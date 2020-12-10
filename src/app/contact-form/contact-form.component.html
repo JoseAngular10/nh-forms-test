@@ -1,0 +1,64 @@
+<form #contactForm="ngForm" (ngSubmit)="onSubmit(contactForm)"> <!-- let contactForm = new NgForm()-->
+  <p>
+    <label for="firstname">Nombres</label>
+    <input type="text" id="firstname" name="firstname" [(ngModel)]="contact.firstname">
+  </p>
+ 
+  <p>
+    <label for="lastname">Apellidos</label>
+    <input type="text" id="lastname" name="lastname" [(ngModel)]="contact.lastname">
+  </p>
+ 
+  <p>
+    <label for="email">Email </label>
+    <input type="email" id="email" name="email" [(ngModel)]="contact.email">
+  </p>
+ 
+  <p>
+    <label for="gender">Genero</label>
+    <input type="radio" value="male" id="gender" name="gender" [(ngModel)]="contact.gender"> Hombre
+    <input type="radio" value="female" id="gender" name="gender" [(ngModel)]="contact.gender"> Mujer
+  </p>
+ 
+  <p>
+    <label for="isMarried">Estado civil</label>
+    <input type="checkbox" id="isMarried" name="isMarried" [(ngModel)]="contact.isMarried">
+  </p>
+ 
+  <p>
+  <label for="country">Pais </label>
+  <select name="country" id="country" [(ngModel)]="contact.country.id">
+    <option selected="" value=""></option>
+    <option [ngValue]="c.id" *ngFor="let c of countryList">
+      {{c.name}} 
+    </option>
+  </select>
+  </p>
+
+  <div ngModelGroup="address">
+    <p>
+      <label for="city">Ciudad</label>
+      <input type="text" name="city" [(ngModel)]="contact.address.city">
+    </p>
+ 
+    <p>
+      <label for="street">Calle</label>
+      <input type="text" name="street" [(ngModel)]="contact.address.street">
+    </p>
+    <p>
+      <label for="pincode">Codigo Postal</label>
+      <input type="text" name="pincode" [(ngModel)]="contact.address.pincode">
+    </p>
+  </div>
+
+  <p>
+    <button type="submit">Guardar</button>
+  </p>
+</form>
+
+<div>
+  <h2>Valores del formulario</h2>
+  <pre>
+    {{ contactForm.value | json }} <!-- json(contactForm.value)-->
+  </pre>
+</div>
